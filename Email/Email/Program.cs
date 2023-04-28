@@ -5,10 +5,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        string smtpServer = "smtp.example.com";
-        int smtpPort = 587;
-        string username = "your_username";
-        string password = "your_password";
+        string smtpServer = "smtp.mail.ru";
+        int smtpPort = 465;
+        string username = "";
+        string password = "";
 
         Emailer emailer = new Emailer(smtpServer, smtpPort, username, password);
 
@@ -24,11 +24,7 @@ class Program
         Console.Write("Body: ");
         string body = Console.ReadLine();
 
-        Console.Write("Attachments (comma separated): ");
-        string attachmentsString = Console.ReadLine();
-        string[] attachments = attachmentsString.Split(',');
-
-        emailer.SendEmail(from, to, subject, body, attachments);
+        emailer.SendEmail(from, to, subject, body);
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();

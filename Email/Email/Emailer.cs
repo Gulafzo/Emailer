@@ -20,24 +20,13 @@ namespace Email
             this.password = password;
         }
 
-        public void SendEmail(string from, string to, string subject, string body, string[] attachments)
+        public void SendEmail(string from, string to, string subject, string body )
         {
             MailMessage message = new MailMessage(from, to);
             message.Subject = subject;
             message.Body = body;
 
-            foreach (string attachment in attachments)
-            {
-                if (File.Exists(attachment))
-                {
-                    Attachment fileAttachment = new Attachment(attachment);
-                    message.Attachments.Add(fileAttachment);
-                }
-                else
-                {
-                    Console.WriteLine($"File {attachment} does not exist.");
-                }
-            }
+            
 
             SmtpClient client = new SmtpClient(smtpServer, smtpPort);
             client.EnableSsl = true;
